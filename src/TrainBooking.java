@@ -4,10 +4,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/***
+ *Student name : Manoj laksjan
+ * UOW ID : w1761261
+ * IIT ID : 2019274
+ * DAte : 7/03/2020
+ */
 public class TrainBooking extends Application {
     final static int SEAT_CAPACITY = 42;
 
@@ -304,17 +309,17 @@ public class TrainBooking extends Application {
             String sNum = choiceBox.getValue();
 
             if (x == 1) {
-                sendToArrays(seats, dUser, uName, uAddress, uCn, uEmail, sNum, uDetails, x, nameText, addressText, contactText, emailText, choiceBox, addStage);
+                sendToArrays(scn, seats, dUser, uName, uAddress, uCn, uEmail, sNum, uDetails, x, nameText, addressText, contactText, emailText, choiceBox, addStage);
 
             } else {
-                sendToArrays(seats, dUser, uName, uAddress, uCn, uEmail, sNum, uDetails, x, nameText, addressText, contactText, emailText, choiceBox, addStage);
+                sendToArrays(scn, seats, dUser, uName, uAddress, uCn, uEmail, sNum, uDetails, x, nameText, addressText, contactText, emailText, choiceBox, addStage);
             }
         });
 
     }
 
     //set data array
-    private void sendToArrays(int[][] seats, String[][] dUser, String uName, String uAddress, String uCn, String uEmail, String sNum, String[][] uDetails, int x, TextField n, TextField ad, TextField c, TextField e, ChoiceBox<String> choiceBox, Stage stage) {
+    private void sendToArrays(Scene scn, int[][] seats, String[][] dUser, String uName, String uAddress, String uCn, String uEmail, String sNum, String[][] uDetails, int x, TextField n, TextField ad, TextField c, TextField e, ChoiceBox<String> choiceBox, Stage stage) {
         if (uName.equals("") || uAddress.equals("") || uCn.equals("") || uEmail.equals("") || sNum == null) {
             Alert a = new Alert(Alert.AlertType.NONE);
             a.setAlertType(Alert.AlertType.ERROR);
@@ -330,7 +335,7 @@ public class TrainBooking extends Application {
                 uDetails[Integer.parseInt(sNum) - 1][3] = uCn;
                 uDetails[Integer.parseInt(sNum) - 1][4] = uEmail;
                 resetText(n, ad, c, e, choiceBox);
-                stage.close();
+                stage.setScene(scn);
             } else {
                 showAlert(uName, sNum);
                 seats[1][Integer.parseInt(sNum) - 1] = Integer.parseInt(sNum);
@@ -340,7 +345,7 @@ public class TrainBooking extends Application {
                 dUser[Integer.parseInt(sNum) - 1][3] = uCn;
                 dUser[Integer.parseInt(sNum) - 1][4] = uEmail;
                 resetText(n, ad, c, e, choiceBox);
-                stage.close();
+                stage.setScene(scn);
             }
         }
     }
@@ -897,8 +902,6 @@ public class TrainBooking extends Application {
         System.out.println("\nOder by Alphabetically order\n");
         for (int i = 0; i < n; i++) {
             System.out.println(name.get(i) + " - " + seats.get(i));
-
         }
     }
-
 }

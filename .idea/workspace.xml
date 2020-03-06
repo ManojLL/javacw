@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6b85c571-2e27-43a5-ae40-b393c41013e7" name="Default Changelist" comment="" />
+    <list default="true" id="6b85c571-2e27-43a5-ae40-b393c41013e7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TrainBooking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TrainBooking.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,7 +17,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1YiBwh9lvsR2anEHdpr4DQDtR1r" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -60,7 +67,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1583415775358</updated>
-      <workItem from="1583415779206" duration="42492000" />
+      <workItem from="1583415779206" duration="43568000" />
+      <workItem from="1583518260367" duration="1108000" />
     </task>
     <servers />
   </component>
@@ -80,26 +88,30 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="416" y="146" width="524" height="509" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.27.1366.741@0.27.1366.741" timestamp="1583421423803" />
-    <state width="1320" height="551" key="GridCell.Tab.0.bottom" timestamp="1583480612197">
+    <state width="1320" height="551" key="GridCell.Tab.0.bottom" timestamp="1583519629226">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="551" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1583480612197" />
-    <state width="1320" height="551" key="GridCell.Tab.0.center" timestamp="1583480612191">
+    <state width="1320" height="551" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1583519629226" />
+    <state width="1320" height="551" key="GridCell.Tab.0.center" timestamp="1583519629226">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="551" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1583480612191" />
-    <state width="1320" height="551" key="GridCell.Tab.0.left" timestamp="1583480612190">
+    <state width="1320" height="551" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1583519629226" />
+    <state width="1320" height="551" key="GridCell.Tab.0.left" timestamp="1583519629225">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="551" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1583480612190" />
-    <state width="1320" height="551" key="GridCell.Tab.0.right" timestamp="1583480612192">
+    <state width="1320" height="551" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1583519629225" />
+    <state width="1320" height="551" key="GridCell.Tab.0.right" timestamp="1583519629226">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="551" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1583480612192" />
+    <state width="1320" height="551" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1583519629226" />
     <state width="498" height="398" key="SwitcherDM" timestamp="1583427895579">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state width="498" height="398" key="SwitcherDM/0.27.1366.741@0.27.1366.741" timestamp="1583427895579" />
+    <state x="339" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1583518296963">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="339" y="225" key="com.intellij.ide.util.TipDialog/0.27.1366.741@0.27.1366.741" timestamp="1583518296963" />
     <state x="248" y="74" width="869" height="646" key="find.popup" timestamp="1583419106720">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
