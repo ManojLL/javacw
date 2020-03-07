@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6b85c571-2e27-43a5-ae40-b393c41013e7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/mongo_java_driver_3_12_2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pp2as.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pp2as.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TrainBooking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TrainBooking.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,10 +30,13 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/jar_files/mongo-java-driver-3.12.2.jar!/" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
@@ -68,7 +73,7 @@
       <option name="presentableId" value="Default" />
       <updated>1583415775358</updated>
       <workItem from="1583415779206" duration="43568000" />
-      <workItem from="1583518260367" duration="1108000" />
+      <workItem from="1583518260367" duration="5647000" />
     </task>
     <servers />
   </component>
@@ -88,22 +93,30 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="416" y="146" width="524" height="509" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.27.1366.741@0.27.1366.741" timestamp="1583421423803" />
-    <state width="1320" height="551" key="GridCell.Tab.0.bottom" timestamp="1583519629226">
+    <state x="305" y="141" width="735" height="520" key="FileChooserDialogImpl" timestamp="1583554415295">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="551" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1583519629226" />
-    <state width="1320" height="551" key="GridCell.Tab.0.center" timestamp="1583519629226">
+    <state x="305" y="141" width="735" height="520" key="FileChooserDialogImpl/0.27.1366.741@0.27.1366.741" timestamp="1583554415295" />
+    <state width="1320" height="551" key="GridCell.Tab.0.bottom" timestamp="1583557968081">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="551" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1583519629226" />
-    <state width="1320" height="551" key="GridCell.Tab.0.left" timestamp="1583519629225">
+    <state width="1320" height="551" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1583557968081" />
+    <state width="1320" height="551" key="GridCell.Tab.0.center" timestamp="1583557968080">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="551" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1583519629225" />
-    <state width="1320" height="551" key="GridCell.Tab.0.right" timestamp="1583519629226">
+    <state width="1320" height="551" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1583557968080" />
+    <state width="1320" height="551" key="GridCell.Tab.0.left" timestamp="1583557968079">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="551" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1583519629226" />
+    <state width="1320" height="551" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1583557968079" />
+    <state width="1320" height="551" key="GridCell.Tab.0.right" timestamp="1583557968081">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state width="1320" height="551" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1583557968081" />
+    <state x="166" y="27" width="1024" height="741" key="SettingsEditor" timestamp="1583554435912">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="166" y="27" width="1024" height="741" key="SettingsEditor/0.27.1366.741@0.27.1366.741" timestamp="1583554435912" />
     <state width="498" height="398" key="SwitcherDM" timestamp="1583427895579">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
@@ -120,9 +133,9 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="347" y="174" key="run.anything.popup/0.27.1366.741@0.27.1366.741" timestamp="1583438206137" />
-    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1583478322287">
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1583556439847">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.27.1366.741@0.27.1366.741" timestamp="1583478322287" />
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.27.1366.741@0.27.1366.741" timestamp="1583556439847" />
   </component>
 </project>

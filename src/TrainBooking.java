@@ -3,7 +3,9 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -25,11 +27,11 @@ public class TrainBooking extends Application {
     public void start(Stage primaryStage) throws Exception {
         /***
          * this array contain up trip user details
-         *user seat number , user name, address, contact number, email
+         *user seat number , user name, address, contact number, email , id number
          */
-        String[][] upUserDetails = new String[SEAT_CAPACITY][5];
+        String[][] upUserDetails = new String[SEAT_CAPACITY][6];
         //this array contains down (badulla to colombo) trip dtails
-        String[][] downUserDetails = new String[SEAT_CAPACITY][5];
+        String[][] downUserDetails = new String[SEAT_CAPACITY][6];
 
         /***
          * in this 2d array
@@ -218,11 +220,12 @@ public class TrainBooking extends Application {
 
     private void setPane(Stage addStage, Pane pane, Scene scn, int x, int[][] seats, String[][] dUser, String[][] uDetails) {
 //add labels here
-        Label name = new Label("Name : ");
-        Label address = new Label("Address :");
-        Label contact = new Label("Contact(TP) :");
-        Label email = new Label("Email :");
-        Label slSeat = new Label("Select A seat :");
+        Label name = new Label("Name*: ");
+        Label address = new Label("Address* :");
+        Label contact = new Label("Contact(TP)* :");
+        Label email = new Label("Email* :");
+        Label idNum = new Label("NIC* :");
+        Label slSeat = new Label("Select A seat* :");
         Label available = new Label("Available seats");
 
 
@@ -231,6 +234,7 @@ public class TrainBooking extends Application {
         TextField addressText = new TextField("");
         TextField contactText = new TextField("");
         TextField emailText = new TextField("");
+        TextField idText = new TextField("");
         Button backB = new Button("back");
         Button closeStage = new Button("Go to menu");
         Button booking = new Button("booking");
@@ -252,35 +256,42 @@ public class TrainBooking extends Application {
                 }
             }
         }
-        pane.getChildren().addAll(available, slSeat, name, address, contact, nameText, addressText, contactText, email, emailText, backB, closeStage, booking, choiceBox);
+        pane.getChildren().addAll(idText, idNum, available, slSeat, name, address, contact, nameText, addressText, contactText, email, emailText, backB, closeStage, booking, choiceBox);
         available.setLayoutX(40);
         available.setLayoutY(375);
         name.setLayoutX(10);
         name.setLayoutY(30);
 
+        idNum.setLayoutX(10);
+        idNum.setLayoutY(60);
+
         address.setLayoutX(10);
-        address.setLayoutY(60);
+        address.setLayoutY(90);
 
         email.setLayoutX(10);
-        email.setLayoutY(120);
+        email.setLayoutY(150);
 
         contact.setLayoutX(10);
-        contact.setLayoutY(90);
+        contact.setLayoutY(120);
 
         nameText.setLayoutX(130);
         nameText.setLayoutY(30);
 
+        idText.setLayoutX(130);
+        idText.setLayoutY(60);
+
         addressText.setLayoutX(130);
-        addressText.setLayoutY(60);
+        addressText.setLayoutY(90);
 
         contactText.setLayoutX(130);
-        contactText.setLayoutY(90);
+        contactText.setLayoutY(120);
 
         emailText.setLayoutX(130);
-        emailText.setLayoutY(120);
+        emailText.setLayoutY(150);
 
-        choiceBox.setLayoutX(150);
+        choiceBox.setLayoutX(170);
         choiceBox.setLayoutY(200);
+
 
         backB.setLayoutX(40);
         backB.setLayoutY(300);
@@ -307,20 +318,21 @@ public class TrainBooking extends Application {
             String uAddress = addressText.getText();
             String uEmail = emailText.getText();
             String sNum = choiceBox.getValue();
+            String id = idText.getText();
 
             if (x == 1) {
-                sendToArrays(scn, seats, dUser, uName, uAddress, uCn, uEmail, sNum, uDetails, x, nameText, addressText, contactText, emailText, choiceBox, addStage);
+                sendToArrays(scn, seats, dUser, uName, uAddress, uCn, uEmail, sNum, uDetails, x, nameText, addressText, contactText, emailText, choiceBox, addStage,idText,id);
 
             } else {
-                sendToArrays(scn, seats, dUser, uName, uAddress, uCn, uEmail, sNum, uDetails, x, nameText, addressText, contactText, emailText, choiceBox, addStage);
+                sendToArrays(scn, seats, dUser, uName, uAddress, uCn, uEmail, sNum, uDetails, x, nameText, addressText, contactText, emailText, choiceBox, addStage,idText,id);
             }
         });
 
     }
 
     //set data array
-    private void sendToArrays(Scene scn, int[][] seats, String[][] dUser, String uName, String uAddress, String uCn, String uEmail, String sNum, String[][] uDetails, int x, TextField n, TextField ad, TextField c, TextField e, ChoiceBox<String> choiceBox, Stage stage) {
-        if (uName.equals("") || uAddress.equals("") || uCn.equals("") || uEmail.equals("") || sNum == null) {
+    private void sendToArrays(Scene scn, int[][] seats, String[][] dUser, String uName, String uAddress, String uCn, String uEmail, String sNum, String[][] uDetails, int x, TextField n, TextField ad, TextField c, TextField e, ChoiceBox<String> choiceBox, Stage stage,TextField idT,String  idNum) {
+        if (uName.equals("") || uAddress.equals("") || uCn.equals("") || uEmail.equals("") || sNum == null || idNum.equals("")) {
             Alert a = new Alert(Alert.AlertType.NONE);
             a.setAlertType(Alert.AlertType.ERROR);
             a.setContentText("fill all ");
@@ -328,23 +340,25 @@ public class TrainBooking extends Application {
         } else {
             if (x == 1) {
                 showAlert(uName, sNum);
-                seats[0][Integer.parseInt(sNum) - 1] = Integer.parseInt(sNum);
-                uDetails[Integer.parseInt(sNum) - 1][0] = sNum;
-                uDetails[Integer.parseInt(sNum) - 1][1] = uName;
-                uDetails[Integer.parseInt(sNum) - 1][2] = uAddress;
-                uDetails[Integer.parseInt(sNum) - 1][3] = uCn;
-                uDetails[Integer.parseInt(sNum) - 1][4] = uEmail;
-                resetText(n, ad, c, e, choiceBox);
+                seats[0][Integer.parseInt(sNum) - 1] = Integer.parseInt(sNum); //add seat
+                uDetails[Integer.parseInt(sNum) - 1][0] = sNum; //add seat to upuserdetiails
+                uDetails[Integer.parseInt(sNum) - 1][1] = uName; //add seat to upuserdetiails
+                uDetails[Integer.parseInt(sNum) - 1][2] = uAddress;//add seat to upuserdetiails
+                uDetails[Integer.parseInt(sNum) - 1][3] = uCn;//add seat to upuserdetiails
+                uDetails[Integer.parseInt(sNum) - 1][4] = uEmail;//add seat to upuserdetiails
+                uDetails[Integer.parseInt(sNum) - 1][5] = idNum;//add seat to upuserdetiails
+                resetText(n, ad, c, e, choiceBox,idT);
                 stage.setScene(scn);
             } else {
                 showAlert(uName, sNum);
                 seats[1][Integer.parseInt(sNum) - 1] = Integer.parseInt(sNum);
-                dUser[Integer.parseInt(sNum) - 1][0] = sNum;
-                dUser[Integer.parseInt(sNum) - 1][1] = uName;
-                dUser[Integer.parseInt(sNum) - 1][2] = uAddress;
-                dUser[Integer.parseInt(sNum) - 1][3] = uCn;
-                dUser[Integer.parseInt(sNum) - 1][4] = uEmail;
-                resetText(n, ad, c, e, choiceBox);
+                dUser[Integer.parseInt(sNum) - 1][0] = sNum;//add seat to upuserdetiails
+                dUser[Integer.parseInt(sNum) - 1][1] = uName;//add seat to upuserdetiails
+                dUser[Integer.parseInt(sNum) - 1][2] = uAddress;//add seat to upuserdetiails
+                dUser[Integer.parseInt(sNum) - 1][3] = uCn;//add seat to upuserdetiails
+                dUser[Integer.parseInt(sNum) - 1][4] = uEmail;//add seat to upuserdetiails
+                dUser[Integer.parseInt(sNum) - 1][5] = idNum;//add seat to upuserdetiails
+                resetText(n, ad, c, e, choiceBox,idT);
                 stage.setScene(scn);
             }
         }
@@ -357,11 +371,12 @@ public class TrainBooking extends Application {
         a.showAndWait();
     }
 
-    private void resetText(TextField n, TextField ad, TextField c, TextField e, ChoiceBox<String> choiceBox) {
+    private void resetText(TextField n, TextField ad, TextField c, TextField e, ChoiceBox<String> choiceBox,TextField id) {
         n.setText("");
         ad.setText("");
         c.setText("");
         e.setText("");
+        id.setText("");
         choiceBox.setValue(null);
     }
 
