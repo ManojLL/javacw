@@ -291,7 +291,7 @@ public class TrainBooking extends Application {
 
         choiceBox.setLayoutX(170);
         choiceBox.setLayoutY(200);
-
+        choiceBox.setStyle("-fx-pref-width: 180");
 
         backB.setLayoutX(40);
         backB.setLayoutY(300);
@@ -321,17 +321,17 @@ public class TrainBooking extends Application {
             String id = idText.getText();
 
             if (x == 1) {
-                sendToArrays(scn, seats, dUser, uName, uAddress, uCn, uEmail, sNum, uDetails, x, nameText, addressText, contactText, emailText, choiceBox, addStage,idText,id);
+                sendToArrays(scn, seats, dUser, uName, uAddress, uCn, uEmail, sNum, uDetails, x, nameText, addressText, contactText, emailText, choiceBox, addStage, idText, id);
 
             } else {
-                sendToArrays(scn, seats, dUser, uName, uAddress, uCn, uEmail, sNum, uDetails, x, nameText, addressText, contactText, emailText, choiceBox, addStage,idText,id);
+                sendToArrays(scn, seats, dUser, uName, uAddress, uCn, uEmail, sNum, uDetails, x, nameText, addressText, contactText, emailText, choiceBox, addStage, idText, id);
             }
         });
 
     }
 
     //set data array
-    private void sendToArrays(Scene scn, int[][] seats, String[][] dUser, String uName, String uAddress, String uCn, String uEmail, String sNum, String[][] uDetails, int x, TextField n, TextField ad, TextField c, TextField e, ChoiceBox<String> choiceBox, Stage stage,TextField idT,String  idNum) {
+    private void sendToArrays(Scene scn, int[][] seats, String[][] dUser, String uName, String uAddress, String uCn, String uEmail, String sNum, String[][] uDetails, int x, TextField n, TextField ad, TextField c, TextField e, ChoiceBox<String> choiceBox, Stage stage, TextField idT, String idNum) {
         if (uName.equals("") || uAddress.equals("") || uCn.equals("") || uEmail.equals("") || sNum == null || idNum.equals("")) {
             Alert a = new Alert(Alert.AlertType.NONE);
             a.setAlertType(Alert.AlertType.ERROR);
@@ -347,7 +347,7 @@ public class TrainBooking extends Application {
                 uDetails[Integer.parseInt(sNum) - 1][3] = uCn;//add seat to upuserdetiails
                 uDetails[Integer.parseInt(sNum) - 1][4] = uEmail;//add seat to upuserdetiails
                 uDetails[Integer.parseInt(sNum) - 1][5] = idNum;//add seat to upuserdetiails
-                resetText(n, ad, c, e, choiceBox,idT);
+                resetText(n, ad, c, e, choiceBox, idT);
                 stage.setScene(scn);
             } else {
                 showAlert(uName, sNum);
@@ -358,7 +358,7 @@ public class TrainBooking extends Application {
                 dUser[Integer.parseInt(sNum) - 1][3] = uCn;//add seat to upuserdetiails
                 dUser[Integer.parseInt(sNum) - 1][4] = uEmail;//add seat to upuserdetiails
                 dUser[Integer.parseInt(sNum) - 1][5] = idNum;//add seat to upuserdetiails
-                resetText(n, ad, c, e, choiceBox,idT);
+                resetText(n, ad, c, e, choiceBox, idT);
                 stage.setScene(scn);
             }
         }
@@ -371,7 +371,7 @@ public class TrainBooking extends Application {
         a.showAndWait();
     }
 
-    private void resetText(TextField n, TextField ad, TextField c, TextField e, ChoiceBox<String> choiceBox,TextField id) {
+    private void resetText(TextField n, TextField ad, TextField c, TextField e, ChoiceBox<String> choiceBox, TextField id) {
         n.setText("");
         ad.setText("");
         c.setText("");
@@ -852,8 +852,7 @@ public class TrainBooking extends Application {
         System.out.println("-------------------------- FIND A SEAT -----------------------------");
         System.out.println("===================================================================================\n");
 
-        ArrayList<String> name = new ArrayList<>();
-        ArrayList<String> seats = new ArrayList<>();
+
 
         order:
         while (true) {
@@ -864,6 +863,8 @@ public class TrainBooking extends Application {
             String option = sc.next().toLowerCase();
             switch (option) {
                 case "1":
+                    ArrayList<String> name = new ArrayList<>();
+                    ArrayList<String> seats = new ArrayList<>();
                     putToArrays(up, name, seats);
 
                     int lenthName = name.size();
@@ -872,10 +873,12 @@ public class TrainBooking extends Application {
                     showOrder(name, seats, lenthName);
                     break;
                 case "2":
-                    putToArrays(down, name, seats);
-                    int lenthName1 = name.size();
-                    sorting(name, seats, lenthName1);
-                    showOrder(name, seats, lenthName1);
+                    ArrayList<String> name1 = new ArrayList<>();
+                    ArrayList<String> seats2 = new ArrayList<>();
+                    putToArrays(down, name1, seats2);
+                    int lenthName1 = name1.size();
+                    sorting(name1, seats2, lenthName1);
+                    showOrder(name1, seats2, lenthName1);
                     break;
                 case "q":
                     break order;
