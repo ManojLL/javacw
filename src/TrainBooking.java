@@ -975,7 +975,7 @@ public class TrainBooking extends Application {
         bw.close();
     }
 
-
+//load data fro files
     private void loadArray(String[][] upDetails, String[][] downDetails, String bDate,int[][] seat) throws IOException {
         try {
             File file1 = new File("/home/manoj/IdeaProjects/pp2as/src/booking.txt");
@@ -986,7 +986,7 @@ public class TrainBooking extends Application {
             System.out.println("cant find file");
         }
     }
-
+//reading files
     private void readFiles(File file,String[][] up,String[][] down ,String bDate,int[][] seat,int x) throws IOException {
         try {
             BufferedReader bw = new BufferedReader(new FileReader(file));
@@ -999,31 +999,44 @@ public class TrainBooking extends Application {
         }
     }
 
+    /***
+     * this method use to split read line and ssend that data to arrays
+     * @param line
+     * @param up
+     * @param down
+     * @param bDate
+     * @param seat
+     * @param x
+     */
     private void slipRead(String line,String[][] up,String[][] down ,String bDate,int[][] seat,int x){
-        if(x == 1) {
-            String[] details = line.split("-");
-            if(details[6].equals(bDate)){
-                up[Integer.parseInt(details[0])-1][0] = details[0];
-                up[Integer.parseInt(details[0])-1][1] = details[1];
-                up[Integer.parseInt(details[0])-1][2] = details[2];
-                up[Integer.parseInt(details[0])-1][3] = details[3];
-                up[Integer.parseInt(details[0])-1][4] = details[4];
-                up[Integer.parseInt(details[0])-1][5] = details[5];
+        try {
+            if (x == 1) {
+                String[] details = line.split("-");
+                if (details[6].equals(bDate)) {
+                    up[Integer.parseInt(details[0]) - 1][0] = details[0];
+                    up[Integer.parseInt(details[0]) - 1][1] = details[1];
+                    up[Integer.parseInt(details[0]) - 1][2] = details[2];
+                    up[Integer.parseInt(details[0]) - 1][3] = details[3];
+                    up[Integer.parseInt(details[0]) - 1][4] = details[4];
+                    up[Integer.parseInt(details[0]) - 1][5] = details[5];
 
-                seat[0][Integer.parseInt(details[0])-1] = Integer.parseInt(details[0]);
-            }
-        }else{
-            String[] details = line.split("-");
-            if(details[6].equals(bDate)){
-                down[Integer.parseInt(details[0])-1][0] = details[0];
-                down[Integer.parseInt(details[0])-1][1] = details[1];
-                down[Integer.parseInt(details[0])-1][2] = details[2];
-                down[Integer.parseInt(details[0])-1][3] = details[3];
-                down[Integer.parseInt(details[0])-1][4] = details[4];
-                down[Integer.parseInt(details[0])-1][5] = details[5];
+                    seat[0][Integer.parseInt(details[0]) - 1] = Integer.parseInt(details[0]);
+                }
+            } else {
+                String[] details = line.split("-");
+                if (details[6].equals(bDate)) {
+                    down[Integer.parseInt(details[0]) - 1][0] = details[0];
+                    down[Integer.parseInt(details[0]) - 1][1] = details[1];
+                    down[Integer.parseInt(details[0]) - 1][2] = details[2];
+                    down[Integer.parseInt(details[0]) - 1][3] = details[3];
+                    down[Integer.parseInt(details[0]) - 1][4] = details[4];
+                    down[Integer.parseInt(details[0]) - 1][5] = details[5];
 
-                seat[1][Integer.parseInt(details[0])-1] = Integer.parseInt(details[0]);
+                    seat[1][Integer.parseInt(details[0]) - 1] = Integer.parseInt(details[0]);
+                }
             }
+        }catch (Exception e){
+            System.out.println("SOme thing went wrong!!!");
         }
 
     }
