@@ -5,10 +5,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -49,7 +46,7 @@ public class TrainBooking extends Application {
         int[][] seats = new int[2][SEAT_CAPACITY];
 
         //time formatter
-        SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dt1 = new SimpleDateFormat("yyyy/MM/dd");
         //get current date
         Calendar calendar = Calendar.getInstance();
 
@@ -57,7 +54,7 @@ public class TrainBooking extends Application {
         Date today = calendar.getTime();
 
         //booking date (day after tomorrow)
-        calendar.add(Calendar.DAY_OF_YEAR,2);
+        calendar.add(Calendar.DAY_OF_YEAR, 2);
         Date dayAfTomo = calendar.getTime();
 
         //formatting date yyyy/mm/dd
@@ -87,13 +84,13 @@ public class TrainBooking extends Application {
             //use the switch case to call other method according to user choice
             switch (option) {
                 case "a":
-                    addSeat(upUserDetails, downUserDetails, seats,bookingtDate);
+                    addSeat(upUserDetails, downUserDetails, seats, bookingtDate);
                     break;
                 case "v":
-                    viewAll(seats,bookingtDate);
+                    viewAll(seats, bookingtDate);
                     break;
                 case "e":
-                    showEmpty(seats,bookingtDate);
+                    showEmpty(seats, bookingtDate);
                     break;
                 case "d":
                     deleteUser(sc, seats, upUserDetails, downUserDetails);
@@ -102,10 +99,10 @@ public class TrainBooking extends Application {
                     findSeat(sc, upUserDetails, downUserDetails);
                     break;
                 case "s":
-                    saveToFile(upUserDetails, downUserDetails,bookingtDate);
+                    saveToFile(upUserDetails, downUserDetails, bookingtDate);
                     break;
                 case "l":
-                    //todo add oad method
+                    loadArray(upUserDetails, downUserDetails, bookingtDate,seats);
                     break;
                 case "o":
                     orderByAlphabeticOrde(sc, upUserDetails, downUserDetails);
@@ -120,7 +117,7 @@ public class TrainBooking extends Application {
     }
 
     //add a set to customer
-    private void addSeat(String[][] uDetails, String[][] dudetails, int[][] seats,String tomorrow) {
+    private void addSeat(String[][] uDetails, String[][] dudetails, int[][] seats, String tomorrow) {
         Stage addStage = new Stage();
         AnchorPane mainPane = new AnchorPane();
         Label lName = new Label("DUNUWARA MANIKE \nA/C SEAT ");
@@ -129,7 +126,7 @@ public class TrainBooking extends Application {
         lName.setPadding(new Insets(20));
         lName.setLayoutX(205);
 
-        Label date = new Label("Book seat for "+ tomorrow);
+        Label date = new Label("Book seat for " + tomorrow);
         date.setLayoutX(250);
         date.setLayoutY(150);
         date.setStyle("-fx-font-size: 20px");
@@ -138,7 +135,7 @@ public class TrainBooking extends Application {
         Button colomboBtn = new Button("Book seat to Colombo");
         Button closeStage = new Button("Go to menu");
 
-        mainPane.getChildren().addAll(badullaBtn, colomboBtn, closeStage,date);
+        mainPane.getChildren().addAll(badullaBtn, colomboBtn, closeStage, date);
 
         badullaBtn.setLayoutX(320);
         colomboBtn.setLayoutX(320);
@@ -413,7 +410,7 @@ public class TrainBooking extends Application {
      * view all seats
      * @param seats
      */
-    private void viewAll(int[][] seats,String tomorrow) {
+    private void viewAll(int[][] seats, String tomorrow) {
         Stage addStage = new Stage();
         AnchorPane mainPane = new AnchorPane();
         Label lName = new Label("DUNUWARA MANIKE \n");
@@ -421,7 +418,7 @@ public class TrainBooking extends Application {
         lName.setStyle("-fx-text-fill: #4c4fd4;-fx-font-size: 30px;-fx-font-family:'Abyssinica SIL';");
         lName.setPadding(new Insets(20));
         lName.setLayoutX(205);
-        Label date = new Label(" seats on "+ tomorrow);
+        Label date = new Label(" seats on " + tomorrow);
         date.setLayoutX(250);
         date.setLayoutY(150);
         date.setStyle("-fx-font-size: 20px");
@@ -430,7 +427,7 @@ public class TrainBooking extends Application {
         Button colomboBtn = new Button("View all seats to Colombo");
         Button closeStage = new Button("Go to menu");
 
-        mainPane.getChildren().addAll(badullaBtn, colomboBtn, closeStage,date);
+        mainPane.getChildren().addAll(badullaBtn, colomboBtn, closeStage, date);
 
         badullaBtn.setLayoutX(320);
         colomboBtn.setLayoutX(320);
@@ -585,7 +582,7 @@ public class TrainBooking extends Application {
         });
     }
 
-    private void showEmpty(int[][] seats,String tomorrow) {
+    private void showEmpty(int[][] seats, String tomorrow) {
         Stage addStage = new Stage();
         AnchorPane mainPane = new AnchorPane();
         Label lName = new Label("DENUWARA MANIKE \n");
@@ -594,7 +591,7 @@ public class TrainBooking extends Application {
         lName.setPadding(new Insets(20));
         lName.setLayoutX(205);
 
-        Label date = new Label("Empty seats on "+ tomorrow);
+        Label date = new Label("Empty seats on " + tomorrow);
         date.setLayoutX(250);
         date.setLayoutY(150);
         date.setStyle("-fx-font-size: 20px");
@@ -603,7 +600,7 @@ public class TrainBooking extends Application {
         Button colomboBtn = new Button("View empty seats to Colombo");
         Button closeStage = new Button("Go to menu");
 
-        mainPane.getChildren().addAll(badullaBtn, colomboBtn, closeStage,date);
+        mainPane.getChildren().addAll(badullaBtn, colomboBtn, closeStage, date);
 
         badullaBtn.setLayoutX(320);
         colomboBtn.setLayoutX(320);
@@ -961,20 +958,73 @@ public class TrainBooking extends Application {
     }
 
     //save to txt file
-    private void saveToFile(String[][] upDetails, String[][] downDetails,String bDate) throws IOException {
+    private void saveToFile(String[][] upDetails, String[][] downDetails, String bDate) throws IOException {
         File file1 = new File("/home/manoj/IdeaProjects/pp2as/src/booking.txt");
         File file2 = new File("/home/manoj/IdeaProjects/pp2as/src/bookingTwo.txt");
-        saveToText(file1, upDetails,bDate);
-        saveToText(file2, downDetails,bDate);
+        saveToText(file1, upDetails, bDate);
+        saveToText(file2, downDetails, bDate);
     }
 
-    private void saveToText(File file, String[][] userDetails,String bDate) throws IOException {
+    private void saveToText(File file, String[][] userDetails, String bDate) throws IOException {
         BufferedWriter bw = new BufferedWriter(new FileWriter(file));
         for (int i = 0; i < SEAT_CAPACITY; i++) {
             if (userDetails[i][0] != null) {
-                bw.write(userDetails[i][0] + "-" + userDetails[i][1] + "-" + userDetails[i][2] + "-" + userDetails[i][3] + "-" + userDetails[i][4] + "-" + userDetails[i][5] +"-"+bDate);
+                bw.write(userDetails[i][0] + "-" + userDetails[i][1] + "-" + userDetails[i][2] + "-" + userDetails[i][3] + "-" + userDetails[i][4] + "-" + userDetails[i][5] + "-" + bDate+"\n");
             }
+        }
+        bw.close();
+    }
+
+
+    private void loadArray(String[][] upDetails, String[][] downDetails, String bDate,int[][] seat) throws IOException {
+        try {
+            File file1 = new File("/home/manoj/IdeaProjects/pp2as/src/booking.txt");
+            File file2 = new File("/home/manoj/IdeaProjects/pp2as/src/bookingTwo.txt");
+            readFiles(file1, upDetails, downDetails, bDate, seat, 1);
+            readFiles(file2, upDetails, downDetails, bDate, seat, 2);
+        }catch (IOException e){
+            System.out.println("cant find file");
         }
     }
 
+    private void readFiles(File file,String[][] up,String[][] down ,String bDate,int[][] seat,int x) throws IOException {
+        try {
+            BufferedReader bw = new BufferedReader(new FileReader(file));
+            String st;
+            while ((st = bw.readLine()) != null) {
+                slipRead(st, up, down, bDate, seat, x);
+            }
+        }catch (IOException e){
+            System.out.println("cant find file!!");
+        }
+    }
+
+    private void slipRead(String line,String[][] up,String[][] down ,String bDate,int[][] seat,int x){
+        if(x == 1) {
+            String[] details = line.split("-");
+            if(details[6].equals(bDate)){
+                up[Integer.parseInt(details[0])-1][0] = details[0];
+                up[Integer.parseInt(details[0])-1][1] = details[1];
+                up[Integer.parseInt(details[0])-1][2] = details[2];
+                up[Integer.parseInt(details[0])-1][3] = details[3];
+                up[Integer.parseInt(details[0])-1][4] = details[4];
+                up[Integer.parseInt(details[0])-1][5] = details[5];
+
+                seat[0][Integer.parseInt(details[0])-1] = Integer.parseInt(details[0]);
+            }
+        }else{
+            String[] details = line.split("-");
+            if(details[6].equals(bDate)){
+                down[Integer.parseInt(details[0])-1][0] = details[0];
+                down[Integer.parseInt(details[0])-1][1] = details[1];
+                down[Integer.parseInt(details[0])-1][2] = details[2];
+                down[Integer.parseInt(details[0])-1][3] = details[3];
+                down[Integer.parseInt(details[0])-1][4] = details[4];
+                down[Integer.parseInt(details[0])-1][5] = details[5];
+
+                seat[1][Integer.parseInt(details[0])-1] = Integer.parseInt(details[0]);
+            }
+        }
+
+    }
 }
