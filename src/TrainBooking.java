@@ -969,11 +969,10 @@ public class TrainBooking extends Application {
     }
 
     private void saveToText(File file, String[][] userDetails,String bDate) throws IOException {
-        FileWriter fw = new FileWriter(file);
-        BufferedWriter bw = new BufferedWriter(fw);
+        BufferedWriter bw = new BufferedWriter(new FileWriter(file));
         for (int i = 0; i < SEAT_CAPACITY; i++) {
             if (userDetails[i][0] != null) {
-                bw.write(userDetails[i][0] + "-" + userDetails[i][1] + "-" + userDetails[i][2] + "-" + userDetails[i][3] + "-" + userDetails[i][4] + "-" + userDetails[i][5] +"-"+bDate+"\n");
+                bw.write(userDetails[i][0] + "-" + userDetails[i][1] + "-" + userDetails[i][2] + "-" + userDetails[i][3] + "-" + userDetails[i][4] + "-" + userDetails[i][5] +"-"+bDate);
             }
         }
     }

@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6b85c571-2e27-43a5-ae40-b393c41013e7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/pp2as/TrainBooking.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/pp2as/TrainBooking.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/pp2as/booking.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/pp2as/booking.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TrainBooking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TrainBooking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/booking.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,22 +118,22 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="305" y="141" width="735" height="520" key="FileChooserDialogImpl/0.27.1366.741@0.27.1366.741" timestamp="1583846771621" />
-    <state width="1320" height="167" key="GridCell.Tab.0.bottom" timestamp="1583851003371">
+    <state width="1320" height="167" key="GridCell.Tab.0.bottom" timestamp="1583854822290">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="167" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1583851003371" />
-    <state width="1320" height="167" key="GridCell.Tab.0.center" timestamp="1583851003371">
+    <state width="1320" height="167" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1583854822290" />
+    <state width="1320" height="167" key="GridCell.Tab.0.center" timestamp="1583854822290">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="167" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1583851003371" />
-    <state width="1320" height="167" key="GridCell.Tab.0.left" timestamp="1583851003370">
+    <state width="1320" height="167" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1583854822290" />
+    <state width="1320" height="167" key="GridCell.Tab.0.left" timestamp="1583854822290">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="167" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1583851003370" />
-    <state width="1320" height="167" key="GridCell.Tab.0.right" timestamp="1583851003371">
+    <state width="1320" height="167" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1583854822290" />
+    <state width="1320" height="167" key="GridCell.Tab.0.right" timestamp="1583854822290">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="167" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1583851003371" />
+    <state width="1320" height="167" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1583854822290" />
     <state x="505" y="59" width="345" height="683" key="RollbackChangesDialog" timestamp="1583851038991">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
