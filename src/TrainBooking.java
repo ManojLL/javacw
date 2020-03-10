@@ -6,6 +6,10 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -24,7 +28,7 @@ public class TrainBooking extends Application {
 
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) throws IOException {
         /***
          * this array contain up trip user details
          *user seat number , user name, address, contact number, email , id number
@@ -78,7 +82,7 @@ public class TrainBooking extends Application {
                     findSeat(sc, upUserDetails, downUserDetails);
                     break;
                 case "s":
-                    //todo
+                    saveToFile(upUserDetails,downUserDetails);
                     break;
                 case "l":
                     //todo add oad method
@@ -921,5 +925,25 @@ public class TrainBooking extends Application {
         for (int i = 0; i < n; i++) {
             System.out.println(name.get(i) + " - " + seats.get(i));
         }
+    }
+
+    //save to txt file
+    private void saveToFile(String [][] upDetails,String [][] downDetails) throws IOException {
+        File file = new File("/home/manoj/IdeaProjects/pp2as/src/booking.txt");
+           // BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(newFile));
+           // bufferedWriter.write("Colombo to badulla details..");
+            System.out.println("ell");
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter bf = new BufferedWriter(fw);
+            for(int i = 0;i<SEAT_CAPACITY;i++){
+               // bufferedWriter.write(upDetails[i][1]);
+                String name = upDetails[i][1];
+                if(name != null) {
+                    System.out.println(name);
+                    bf.write(name);
+                }
+            }
+            bf.close();
+
     }
 }
