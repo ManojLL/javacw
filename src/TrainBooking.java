@@ -959,8 +959,8 @@ public class TrainBooking extends Application {
 
     //save to txt file
     private void saveToFile(String[][] upDetails, String[][] downDetails, String bDate) throws IOException {
-        File file1 = new File("/home/manoj/IdeaProjects/pp2as/src/booking.txt");
-        File file2 = new File("/home/manoj/IdeaProjects/pp2as/src/bookingTwo.txt");
+        File file1 = new File("/home/manoj/IdeaProjects/pp2as/src/tripToBadulla.txt");
+        File file2 = new File("/home/manoj/IdeaProjects/pp2as/src/tripToColombo.txt");
         saveToText(file1, upDetails, bDate);
         saveToText(file2, downDetails, bDate);
     }
@@ -978,8 +978,8 @@ public class TrainBooking extends Application {
 //load data fro files
     private void loadArray(String[][] upDetails, String[][] downDetails, String bDate,int[][] seat) throws IOException {
         try {
-            File file1 = new File("/home/manoj/IdeaProjects/pp2as/src/booking.txt");
-            File file2 = new File("/home/manoj/IdeaProjects/pp2as/src/bookingTwo.txt");
+            File file1 = new File("/home/manoj/IdeaProjects/pp2as/src/tripToBadulla.txt");
+            File file2 = new File("/home/manoj/IdeaProjects/pp2as/src/tripToColombo.txt");
             readFiles(file1, upDetails, downDetails, bDate, seat, 1);
             readFiles(file2, upDetails, downDetails, bDate, seat, 2);
         }catch (IOException e){
