@@ -82,7 +82,7 @@ public class TrainBooking extends Application {
                     findSeat(sc, upUserDetails, downUserDetails);
                     break;
                 case "s":
-                    saveToFile(upUserDetails,downUserDetails);
+                    saveToFile(upUserDetails, downUserDetails);
                     break;
                 case "l":
                     //todo add oad method
@@ -857,7 +857,6 @@ public class TrainBooking extends Application {
         System.out.println("===================================================================================\n");
 
 
-
         order:
         while (true) {
             System.out.println("\" 1\" order customer in colombo to Badulla ");
@@ -928,22 +927,28 @@ public class TrainBooking extends Application {
     }
 
     //save to txt file
-    private void saveToFile(String [][] upDetails,String [][] downDetails) throws IOException {
+    private void saveToFile(String[][] upDetails, String[][] downDetails) throws IOException {
         File file = new File("/home/manoj/IdeaProjects/pp2as/src/booking.txt");
-           // BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(newFile));
-           // bufferedWriter.write("Colombo to badulla details..");
-            System.out.println("ell");
-            FileWriter fw = new FileWriter(file);
-            BufferedWriter bf = new BufferedWriter(fw);
-            for(int i = 0;i<SEAT_CAPACITY;i++){
-               // bufferedWriter.write(upDetails[i][1]);
-                String name = upDetails[i][1];
-                if(name != null) {
-                    System.out.println(name);
-                    bf.write(name);
-                }
+        // BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(newFile));
+        // bufferedWriter.write("Colombo to badulla details..");
+        FileWriter fw = new FileWriter(file);
+        BufferedWriter bf = new BufferedWriter(fw);
+        bf.write("colombo to badulla\n");
+        for (int i = 0; i < SEAT_CAPACITY; i++) {
+            if (upDetails[i][0] != null) {
+                bf.write(upDetails[i][0] + "-" + upDetails[i][1] + "-" + upDetails[i][2] + "-" + upDetails[i][3] + "-" + upDetails[i][4] + "-" + upDetails[i][5] + "\n");
             }
-            bf.close();
+        }
+
+        bf.write("badula to colombo\n");
+        for (int i = 0; i < SEAT_CAPACITY; i++) {
+            if (downDetails[i][0] != null) {
+                bf.write(downDetails[i][0] + "-" + downDetails[i][1] + "-" + downDetails[i][2] + "-" + downDetails[i][3] + "-" + downDetails[i][4] + "-" + downDetails[i][5] + "\n");
+            }
+        }
+        bf.close();
 
     }
+
+    //todo make a method to write in text file
 }
