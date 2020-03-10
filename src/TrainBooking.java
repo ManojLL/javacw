@@ -3,14 +3,18 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 
 /***
@@ -44,6 +48,22 @@ public class TrainBooking extends Application {
          */
         int[][] seats = new int[2][SEAT_CAPACITY];
 
+        //time formatter
+        SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-MM-dd");
+        //get current date
+        Calendar calendar = Calendar.getInstance();
+
+        //get current date
+        Date today = calendar.getTime();
+
+        //booking date (day after tomorrow)
+        calendar.add(Calendar.DAY_OF_YEAR,2);
+        Date dayAfTomo = calendar.getTime();
+
+        //formatting date yyyy/mm/dd
+        String currentDate = dt1.format(today);
+        String bookingtDate = dt1.format(dayAfTomo);
+
         Scanner sc = new Scanner(System.in);
         menu:
         while (true) {
@@ -67,13 +87,13 @@ public class TrainBooking extends Application {
             //use the switch case to call other method according to user choice
             switch (option) {
                 case "a":
-                    addSeat(upUserDetails, downUserDetails, seats);
+                    addSeat(upUserDetails, downUserDetails, seats,bookingtDate);
                     break;
                 case "v":
-                    viewAll(seats);
+                    viewAll(seats,bookingtDate);
                     break;
                 case "e":
-                    showEmpty(seats);
+                    showEmpty(seats,bookingtDate);
                     break;
                 case "d":
                     deleteUser(sc, seats, upUserDetails, downUserDetails);
@@ -82,7 +102,7 @@ public class TrainBooking extends Application {
                     findSeat(sc, upUserDetails, downUserDetails);
                     break;
                 case "s":
-                    saveToFile(upUserDetails, downUserDetails);
+                    saveToFile(upUserDetails, downUserDetails,bookingtDate);
                     break;
                 case "l":
                     //todo add oad method
@@ -100,20 +120,25 @@ public class TrainBooking extends Application {
     }
 
     //add a set to customer
-    private void addSeat(String[][] uDetails, String[][] dudetails, int[][] seats) {
+    private void addSeat(String[][] uDetails, String[][] dudetails, int[][] seats,String tomorrow) {
         Stage addStage = new Stage();
         AnchorPane mainPane = new AnchorPane();
-        Label lName = new Label("DUNUWARA MANIKE \nA/C SEAT BOOKING");
+        Label lName = new Label("DUNUWARA MANIKE \nA/C SEAT ");
         mainPane.getChildren().addAll(lName);
         lName.setStyle("-fx-text-fill: #4c4fd4;-fx-font-size: 30px;-fx-font-family:'Abyssinica SIL';");
         lName.setPadding(new Insets(20));
         lName.setLayoutX(205);
 
+        Label date = new Label("Book seat for "+ tomorrow);
+        date.setLayoutX(250);
+        date.setLayoutY(150);
+        date.setStyle("-fx-font-size: 20px");
+
         Button badullaBtn = new Button("Book seat To Badulla");
         Button colomboBtn = new Button("Book seat to Colombo");
         Button closeStage = new Button("Go to menu");
 
-        mainPane.getChildren().addAll(badullaBtn, colomboBtn, closeStage);
+        mainPane.getChildren().addAll(badullaBtn, colomboBtn, closeStage,date);
 
         badullaBtn.setLayoutX(320);
         colomboBtn.setLayoutX(320);
@@ -388,20 +413,24 @@ public class TrainBooking extends Application {
      * view all seats
      * @param seats
      */
-    private void viewAll(int[][] seats) {
+    private void viewAll(int[][] seats,String tomorrow) {
         Stage addStage = new Stage();
         AnchorPane mainPane = new AnchorPane();
-        Label lName = new Label("DUNUWARA MANIKE \nAll seats");
+        Label lName = new Label("DUNUWARA MANIKE \n");
         mainPane.getChildren().addAll(lName);
         lName.setStyle("-fx-text-fill: #4c4fd4;-fx-font-size: 30px;-fx-font-family:'Abyssinica SIL';");
         lName.setPadding(new Insets(20));
         lName.setLayoutX(205);
+        Label date = new Label(" seats on "+ tomorrow);
+        date.setLayoutX(250);
+        date.setLayoutY(150);
+        date.setStyle("-fx-font-size: 20px");
 
         Button badullaBtn = new Button("View all seats To Badulla");
         Button colomboBtn = new Button("View all seats to Colombo");
         Button closeStage = new Button("Go to menu");
 
-        mainPane.getChildren().addAll(badullaBtn, colomboBtn, closeStage);
+        mainPane.getChildren().addAll(badullaBtn, colomboBtn, closeStage,date);
 
         badullaBtn.setLayoutX(320);
         colomboBtn.setLayoutX(320);
@@ -556,20 +585,25 @@ public class TrainBooking extends Application {
         });
     }
 
-    private void showEmpty(int[][] seats) {
+    private void showEmpty(int[][] seats,String tomorrow) {
         Stage addStage = new Stage();
         AnchorPane mainPane = new AnchorPane();
-        Label lName = new Label("DUNUWARA MANIKE \nEmpty seats");
+        Label lName = new Label("DENUWARA MANIKE \n");
         mainPane.getChildren().addAll(lName);
         lName.setStyle("-fx-text-fill: #4c4fd4;-fx-font-size: 30px;-fx-font-family:'Abyssinica SIL';");
         lName.setPadding(new Insets(20));
         lName.setLayoutX(205);
 
+        Label date = new Label("Empty seats on "+ tomorrow);
+        date.setLayoutX(250);
+        date.setLayoutY(150);
+        date.setStyle("-fx-font-size: 20px");
+
         Button badullaBtn = new Button("View empty seats To Badulla");
         Button colomboBtn = new Button("View empty seats to Colombo");
         Button closeStage = new Button("Go to menu");
 
-        mainPane.getChildren().addAll(badullaBtn, colomboBtn, closeStage);
+        mainPane.getChildren().addAll(badullaBtn, colomboBtn, closeStage,date);
 
         badullaBtn.setLayoutX(320);
         colomboBtn.setLayoutX(320);
@@ -927,28 +961,21 @@ public class TrainBooking extends Application {
     }
 
     //save to txt file
-    private void saveToFile(String[][] upDetails, String[][] downDetails) throws IOException {
-        File file = new File("/home/manoj/IdeaProjects/pp2as/src/booking.txt");
-        // BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(newFile));
-        // bufferedWriter.write("Colombo to badulla details..");
-        FileWriter fw = new FileWriter(file);
-        BufferedWriter bf = new BufferedWriter(fw);
-        bf.write("colombo to badulla\n");
-        for (int i = 0; i < SEAT_CAPACITY; i++) {
-            if (upDetails[i][0] != null) {
-                bf.write(upDetails[i][0] + "-" + upDetails[i][1] + "-" + upDetails[i][2] + "-" + upDetails[i][3] + "-" + upDetails[i][4] + "-" + upDetails[i][5] + "\n");
-            }
-        }
-
-        bf.write("badula to colombo\n");
-        for (int i = 0; i < SEAT_CAPACITY; i++) {
-            if (downDetails[i][0] != null) {
-                bf.write(downDetails[i][0] + "-" + downDetails[i][1] + "-" + downDetails[i][2] + "-" + downDetails[i][3] + "-" + downDetails[i][4] + "-" + downDetails[i][5] + "\n");
-            }
-        }
-        bf.close();
-
+    private void saveToFile(String[][] upDetails, String[][] downDetails,String bDate) throws IOException {
+        File file1 = new File("/home/manoj/IdeaProjects/pp2as/src/booking.txt");
+        File file2 = new File("/home/manoj/IdeaProjects/pp2as/src/bookingTwo.txt");
+        saveToText(file1, upDetails,bDate);
+        saveToText(file2, downDetails,bDate);
     }
 
-    //todo make a method to write in text file
+    private void saveToText(File file, String[][] userDetails,String bDate) throws IOException {
+        FileWriter fw = new FileWriter(file);
+        BufferedWriter bw = new BufferedWriter(fw);
+        for (int i = 0; i < SEAT_CAPACITY; i++) {
+            if (userDetails[i][0] != null) {
+                bw.write(userDetails[i][0] + "-" + userDetails[i][1] + "-" + userDetails[i][2] + "-" + userDetails[i][3] + "-" + userDetails[i][4] + "-" + userDetails[i][5] +"-"+bDate+"\n");
+            }
+        }
+    }
+
 }
