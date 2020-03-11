@@ -7,8 +7,6 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -30,19 +28,19 @@ public class TrainBooking extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        /***
-         * this array contain up trip user details
-         *user seat number , user name, address, contact number, email , id number
-         */
+        //
+        //this array contain up trip user details
+        //user seat number , user name, address, contact number, email , id number
+        //
         String[][] upUserDetails = new String[SEAT_CAPACITY][6];
         //this array contains down (badulla to colombo) trip dtails
         String[][] downUserDetails = new String[SEAT_CAPACITY][6];
 
-        /***
-         * in this 2d array
-         * 1st row contain seat numebers of trip from colombo to badulla
-         * 2st row contain seat numebers of trip from badulla to clombo
-         */
+        //
+        //in this 2d array
+        //1st row contain seat numebers of trip from colombo to badulla
+        //2st row contain seat numebers of trip from badulla to clombo
+        //
         int[][] seats = new int[2][SEAT_CAPACITY];
 
         //time formatter
@@ -50,15 +48,11 @@ public class TrainBooking extends Application {
         //get current date
         Calendar calendar = Calendar.getInstance();
 
-        //get current date
-        Date today = calendar.getTime();
-
         //booking date (day after tomorrow)
         calendar.add(Calendar.DAY_OF_YEAR, 2);
         Date dayAfTomo = calendar.getTime();
 
         //formatting date yyyy/mm/dd
-        String currentDate = dt1.format(today);
         String bookingtDate = dt1.format(dayAfTomo);
 
         Scanner sc = new Scanner(System.in);
@@ -102,7 +96,7 @@ public class TrainBooking extends Application {
                     saveToFile(upUserDetails, downUserDetails, bookingtDate);
                     break;
                 case "l":
-                    loadArray(upUserDetails, downUserDetails, bookingtDate,seats);
+                    loadArray(upUserDetails, downUserDetails, bookingtDate, seats);
                     break;
                 case "o":
                     orderByAlphabeticOrde(sc, upUserDetails, downUserDetails);
@@ -151,9 +145,7 @@ public class TrainBooking extends Application {
         badullaBtn.setOnAction(e -> toBadulla(addStage, uDetails, dudetails, seats, scene));
         colomboBtn.setOnAction(e -> toColombo(addStage, uDetails, dudetails, seats, scene));
 
-        closeStage.setOnAction(e -> {
-            addStage.close();
-        });
+        closeStage.setOnAction(e -> addStage.close());
 
         addStage.showAndWait();
     }
@@ -161,11 +153,11 @@ public class TrainBooking extends Application {
     //book seat colombo to badulla
     private void toBadulla(Stage addStage, String[][] uDetails, String[][] dUser, int[][] seats, Scene scn) {
         int x = 1;//this is use for grt to know what user chosed
-        /***
-         * when wokingg with x =1
-         * use seat[0][<~>]
-         * and use upUserDetails array to save user data
-         */
+        //
+        //when wokingg with x =1
+        //use seat[0][<~>]
+        //and use upUserDetails array to save user data
+        //
         BorderPane root = new BorderPane();
 
         Pane pane = new Pane();
@@ -206,11 +198,11 @@ public class TrainBooking extends Application {
     //book seat badulla to colombo
     private void toColombo(Stage addStage, String[][] uDetail, String[][] dUser, int[][] seats, Scene scn) {
         int x = 2;//this is use for grt to know what user chosed
-        /***
-         * when wokingg with x =1
-         * use seat[1][<~>]
-         * and use downUserDetails array to save user data
-         */
+        //
+        //when wokingg with x =1
+        //use seat[1][<~>]
+        //and use downUserDetails array to save user data
+        //
         BorderPane root = new BorderPane();
         Pane pane = new Pane();
         FlowPane flowpane = new FlowPane();
@@ -266,7 +258,7 @@ public class TrainBooking extends Application {
         Button booking = new Button("booking");
 
 
-        ChoiceBox<String> choiceBox = new ChoiceBox<String>();
+        ChoiceBox<String> choiceBox = new ChoiceBox<>();
 
         choiceBox.setStyle("-fx-min-width: 50px;");
         if (x == 1) {
@@ -331,13 +323,9 @@ public class TrainBooking extends Application {
         booking.setLayoutX(350);
         booking.setLayoutY(300);
 
-        backB.setOnAction(e -> {
-            addStage.setScene(scn);
-        });
+        backB.setOnAction(e -> addStage.setScene(scn));
 
-        closeStage.setOnAction(e -> {
-            addStage.close();
-        });
+        closeStage.setOnAction(e -> addStage.close());
         booking.setOnAction(e -> {
             String uName = nameText.getText();
             String uCn = contactText.getText();
@@ -363,6 +351,13 @@ public class TrainBooking extends Application {
             a.setAlertType(Alert.AlertType.ERROR);
             a.setContentText("fill all ");
             a.show();
+        }
+        if (!uCn.matches("[0-9]+" ) ) {
+            Alert a = new Alert(Alert.AlertType.NONE);
+            a.setAlertType(Alert.AlertType.ERROR);
+            a.setContentText("Fill contact number correctly only using numbers ");
+            a.show();
+
         } else {
             if (x == 1) {
                 showAlert(uName, sNum);
@@ -406,10 +401,10 @@ public class TrainBooking extends Application {
         choiceBox.setValue(null);
     }
 
-    /***
-     * view all seats
-     * @param seats
-     */
+    //
+    //view all seats
+    //@param seats
+    //
     private void viewAll(int[][] seats, String tomorrow) {
         Stage addStage = new Stage();
         AnchorPane mainPane = new AnchorPane();
@@ -440,26 +435,19 @@ public class TrainBooking extends Application {
         Scene scene = new Scene(mainPane, 750, 650);
         addStage.setScene(scene);
         //up trip and down trip selection goes here
-        badullaBtn.setOnAction(e -> {
-            showAllToBadulla(addStage, seats, scene);
-        });
-
-        colomboBtn.setOnAction(e -> {
-            showAllToColombo(addStage, seats, scene);
-        });
-        closeStage.setOnAction(e -> {
-            addStage.close();
-        });
+        badullaBtn.setOnAction(e -> showAllToBadulla(addStage, seats, scene));
+        colomboBtn.setOnAction(e -> showAllToColombo(addStage, seats, scene));
+        closeStage.setOnAction(e -> addStage.close());
 
         addStage.showAndWait();
     }
 
     private void showAllToBadulla(Stage addStage, int[][] seats, Scene scn) {
-        /***
-         * when wokingg with x =1
-         * use seat[0][<~>]
-         * and use downUserDetails array to save user data
-         */
+        //
+        // when wokingg with x =1
+        // use seat[0][<~>]
+        // and use downUserDetails array to save user data
+        //
         BorderPane root = new BorderPane();
         Pane pane = new Pane();
         FlowPane flowpane = new FlowPane();
@@ -498,11 +486,11 @@ public class TrainBooking extends Application {
     }
 
     private void showAllToColombo(Stage addStage, int[][] seats, Scene scn) {
-        /***
-         * when wokingg with x =1
-         * use seat[1][<~>]
-         * and use downUserDetails array to save user data
-         */
+        //
+        //when wokingg with x =1
+        //use seat[1][<~>]
+        //and use downUserDetails array to save user data
+        //
         BorderPane root = new BorderPane();
         Pane pane = new Pane();
         FlowPane flowpane = new FlowPane();
@@ -573,13 +561,9 @@ public class TrainBooking extends Application {
         closeStage.setLayoutX(100);
         closeStage.setLayoutY(300);
 
-        backB.setOnAction(e -> {
-            addStage.setScene(scn);
-        });
+        backB.setOnAction(e -> addStage.setScene(scn));
 
-        closeStage.setOnAction(e -> {
-            addStage.close();
-        });
+        closeStage.setOnAction(e -> addStage.close());
     }
 
     private void showEmpty(int[][] seats, String tomorrow) {
@@ -753,10 +737,10 @@ public class TrainBooking extends Application {
         System.out.println("============================================================================================\n");
         delete:
         while (true) {
-            /***
-             * if use 1 use up int 2d array
-             * if use 2 use down int 2d array
-             */
+            //
+            //if use 1 use up int 2d array
+            //if use 2 use down int 2d array
+            //
             System.out.println("\" 1\" delete customer to Badulla");
             System.out.println("\" 2\" delete customer to Colombo");
             System.out.println("\" Q\" Go to main menu");
@@ -902,7 +886,6 @@ public class TrainBooking extends Application {
                     putToArrays(up, name, seats);
 
                     int lenthName = name.size();
-                    int lenthSeat = seats.size();
                     sorting(name, seats, lenthName);
                     showOrder(name, seats, lenthName);
                     break;
@@ -969,32 +952,34 @@ public class TrainBooking extends Application {
         BufferedWriter bw = new BufferedWriter(new FileWriter(file));
         for (int i = 0; i < SEAT_CAPACITY; i++) {
             if (userDetails[i][0] != null) {
-                bw.write(userDetails[i][0] + "-" + userDetails[i][1] + "-" + userDetails[i][2] + "-" + userDetails[i][3] + "-" + userDetails[i][4] + "-" + userDetails[i][5] + "-" + bDate+"\n");
+                bw.write(userDetails[i][0] + "-" + userDetails[i][1] + "-" + userDetails[i][2] + "-" + userDetails[i][3] + "-" + userDetails[i][4] + "-" + userDetails[i][5] + "-" + bDate + "\n");
             }
         }
         bw.close();
     }
 
-//load data fro files
-    private void loadArray(String[][] upDetails, String[][] downDetails, String bDate,int[][] seat) throws IOException {
+    //load data fro files
+    private void loadArray(String[][] upDetails, String[][] downDetails, String bDate, int[][] seat) throws IOException {
         try {
             File file1 = new File("/home/manoj/IdeaProjects/pp2as/src/tripToBadulla.txt");
             File file2 = new File("/home/manoj/IdeaProjects/pp2as/src/tripToColombo.txt");
             readFiles(file1, upDetails, downDetails, bDate, seat, 1);
             readFiles(file2, upDetails, downDetails, bDate, seat, 2);
-        }catch (IOException e){
+        } catch (IOException e) {
             System.out.println("cant find file");
         }
     }
-//reading files
-    private void readFiles(File file,String[][] up,String[][] down ,String bDate,int[][] seat,int x) throws IOException {
+
+    //reading files
+    private void readFiles(File file, String[][] up, String[][] down, String bDate, int[][] seat, int x) throws IOException {
         try {
             BufferedReader bw = new BufferedReader(new FileReader(file));
             String st;
             while ((st = bw.readLine()) != null) {
                 slipRead(st, up, down, bDate, seat, x);
             }
-        }catch (IOException e){
+            bw.close();
+        } catch (IOException e) {
             System.out.println("cant find file!!");
         }
     }
@@ -1008,7 +993,7 @@ public class TrainBooking extends Application {
      * @param seat
      * @param x
      */
-    private void slipRead(String line,String[][] up,String[][] down ,String bDate,int[][] seat,int x){
+    private void slipRead(String line, String[][] up, String[][] down, String bDate, int[][] seat, int x) {
         try {
             if (x == 1) {
                 String[] details = line.split("-");
@@ -1035,9 +1020,8 @@ public class TrainBooking extends Application {
                     seat[1][Integer.parseInt(details[0]) - 1] = Integer.parseInt(details[0]);
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("SOme thing went wrong!!!");
         }
-
     }
 }
